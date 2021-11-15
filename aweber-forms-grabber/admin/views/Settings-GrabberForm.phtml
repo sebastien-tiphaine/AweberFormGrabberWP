@@ -1,0 +1,33 @@
+<section id="main-grabber-form">
+    <!-- Grabber -->
+        <h2><?php _e('Grab a new optin-form', 'aweberformsgrabber');?></h2>
+            
+        <form method="post" action="<?php $this->theUrl(); ?>">
+            <table class="form-table" role="presentation" style="margin-left:0;">
+            <tr>
+                <th scope="row" style="width:300px"><label for="formpath">https://forms.aweber.com/form/</label></th>
+                <td><input name="aweber-form-grabber-formpath" type="text" id="aweber-form-grabber-formpath" value="<?php echo (isset($this->formpath))? $this->formpath:''; ?>" /></td>
+            </tr>
+            </table>
+            <?php submit_button('Grab The Form', 'primary', 'aweber-form-grabber-grabform');?>
+        </form>
+    <!-- /Grabber -->
+    
+    <!-- Grabber Success -->
+        <?php if(isset($this->grabSuccess) && $this->grabSuccess){
+            echo $this->_includePartial('GrabberSuccess');
+        } ?>
+    <!-- Grabber Success -->
+        
+    <!-- Grabber Error -->
+        <?php if(isset($this->grabErrorMessage) && $this->grabErrorMessage){ ?>
+            <div id="grabberError" class="aweber-form-grabber-errorbox">
+                <h2><?php _e('Oh No !', 'aweberformsgrabber');?></h2>
+                <p><?php _e('The grabber failed to execute and has exited with the following message:', 'aweberformsgrabber');?></p>
+                <pre><?php echo $this->grabErrorMessage?></pre>
+                <?php echo $this->_includePartial('GrabberLog'); ?>
+            </div>
+        <?php } ?>
+    <!-- /Grabber Error -->
+    
+</section> 

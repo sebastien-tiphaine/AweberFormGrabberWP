@@ -1,0 +1,30 @@
+<div class="aweber-form-grabber-successbox">
+    <h2><?php _e('Success !', 'aweberformsgrabber');?></h2>
+        <?php if(isset($this->localFormUrl) && !empty($this->localFormUrl) &&
+                 isset($this->aweberFormUrl) && !empty($this->aweberFormUrl)){ ?>
+                 
+                    <h3><?php _e('A new Aweber form has been grabbed.', 'aweberformsgrabber');?></h3>
+                    <p><?php _e('<strong>The form has been successfuly grabbed</strong> and is now accessible from your current website, at the following address:', 'aweberformsgrabber');?></p>
+                    <p><a href="<?php echo $this->localFormUrl;?>" target="_blank"><?php echo $this->localFormUrl;?></a></p>
+                    <p><?php _e('No more remote file from Aweber are required. Only datas are sent to Aweber on form validation.', 'aweberformsgrabber');?></p>
+                    <p><?php _e('Remplace the following url in the script given on Aweber official website:', 'aweberformsgrabber');?></p>
+                    <p><i><?php echo str_replace('https:', '', $this->aweberFormUrl);?></i></p>
+                    <p><?php _e('by this new url :', 'aweberformsgrabber');?></p>
+                    <p><strong><?php echo str_replace('https:', '', $this->localFormUrl);?></strong></p>
+                    <p><?php _e('You script should now look something like that :', 'aweberformsgrabber');?></p>
+                    <p><strong><?php _e('DO NOT COPY THIS CODE. USE THE ONE GIVEN BY AWEBER.<br>
+                                         THIS IS ONLY AN EXAMPLE INCLUDING YOU NEW FORM URL.', 'aweberformsgrabber');?></strong></p>
+                    
+                    <p><textarea class="aweber-form-grabber-textarea" readonly="1">
+<?php echo htmlentities('<div class="AW-Form-xxxxxx"></div>')."\n";?>
+<?php echo htmlentities('<script type="text/javascript">');?>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "<?php echo str_replace('https:', '', $this->localFormUrl);?>";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "aweber-wjs-xxxxxxx"));
+<?php echo htmlentities('</script>');?></textarea></p>
+    <?php } ?>
+    <?php echo $this->_includePartial('GrabberLog'); ?>
+</div>

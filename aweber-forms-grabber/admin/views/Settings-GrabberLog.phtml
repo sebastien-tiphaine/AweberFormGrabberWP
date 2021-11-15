@@ -1,0 +1,8 @@
+<!-- Grabber Log -->
+<?php if(isset($this->logContent) && !empty($this->logContent) && is_array($this->logContent)){ ?>
+    <h3><?php _e('Grabber log', 'aweberformsgrabber');?></h3>
+    <textarea class="aweber-form-grabber-textarea aweber-form-grabber-log" readonly="1">
+<?php foreach($this->logContent as $intLine => $strLog){ echo $intLine.' - '.$strLog."\n"; } ?>
+    </textarea>
+<?php } ?>
+<!-- /Grabber Log --> 

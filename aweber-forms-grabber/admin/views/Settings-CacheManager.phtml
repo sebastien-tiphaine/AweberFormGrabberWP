@@ -1,0 +1,71 @@
+<section id="grabber-cache-manager">
+    
+    <h2><?php _e('Cache manager', 'aweberformsgrabber');?></h2>
+        
+    <?php if(isset($this->updateSuccess) && $this->updateSuccess){ ?>
+        <div class="aweber-form-grabber-successbox">
+            <h2><?php _e('Success !', 'aweberformsgrabber');?></h2>
+            <p><?php _e('The form has been successfully updated !', 'aweberformsgrabber');?></p>
+            <?php echo $this->_includePartial('GrabberLog'); ?>
+        </div>
+    <?php } ?>
+        
+    <?php if(isset($this->removeSuccess) && $this->removeSuccess){ ?>
+        <div class="aweber-form-grabber-successbox">
+            <h2><?php _e('Success !', 'aweberformsgrabber');?></h2>
+            <p><?php _e('The form has been successfully removed !', 'aweberformsgrabber');?></p>
+            <?php echo $this->_includePartial('GrabberLog'); ?>
+        </div>
+    <?php } ?>
+        
+    <?php if(isset($this->clearSuccess) && $this->clearSuccess){ ?>
+        <div class="aweber-form-grabber-successbox">
+            <h2><?php _e('Success !', 'aweberformsgrabber');?></h2>
+            <p><?php _e('The cache has been successfully cleared !', 'aweberformsgrabber');?></p>
+            <?php echo $this->_includePartial('GrabberLog'); ?>
+        </div>
+    <?php } ?>
+        
+    <?php if(isset($this->cacheErrorMessage) && $this->cacheErrorMessage){ ?>
+        <div id="grabberError" class="aweber-form-grabber-errorbox">
+            <h2><?php _e('Oh No !', 'aweberformsgrabber');?></h2>
+            <p><?php _e('The grabber cache manager failed to execute and has exited with the following message:', 'aweberformsgrabber');?></p>
+            <pre><?php echo $this->cacheErrorMessage; ?></pre>
+            <?php echo $this->_includePartial('GrabberLog'); ?>
+        </div>
+    <?php } ?>
+        
+    <?php if(isset($this->cachedForms) && is_array($this->cachedForms) && !empty($this->cachedForms)){ ?>
+        
+        <form method="post" action="<?php $this->theUrl(); ?>#grabber-cache-manager">
+            <?php submit_button('Remove all forms from the cache.', 'primary', 'aweber-form-grabber-clear-cache');?>
+        </form>
+        
+        <table class="aweber-form-grabber-cache-list" role="presentation" style="margin-left:0;">
+            <thead>
+                <tr>
+                    <th><?php _e('Id', 'aweberformsgrabber');?></th>
+                    <th><?php _e('Local url', 'aweberformsgrabber');?></th>
+                    <th><?php _e('Action', 'aweberformsgrabber');?></th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach($this->cachedForms as $arrFormDatas){ ?>
+                <tr>
+                    <form method="post" action="<?php $this->theUrl(); ?>#grabber-cache-manager">
+                    <input type="hidden" name="aweber-form-grabber-cache-manager-cacheid" value="<?php echo $arrFormDatas['id'] ?>">
+                        <td><?php echo $arrFormDatas['id'] ?></td>
+                        <td><strong><?php echo str_replace('https:', '', $arrFormDatas['metadatas']['url']); ?></strong></td>
+                        <td><?php submit_button('Remove', 'small', 'aweber-form-grabber-remove', false);?>
+                        <?php submit_button('Update', 'small', 'aweber-form-grabber-update', false);?>
+                        </td>
+                    </form>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+        
+    <?php }else{?>
+            <p><?php _e('No form grabbed in cache !', 'aweberformsgrabber');?></p>
+    <?php } ?>
+</section>

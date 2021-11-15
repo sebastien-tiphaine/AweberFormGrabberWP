@@ -1,0 +1,13 @@
+<?php $this->enqueueStyle('grabber-settings'); ?>
+<div class="wrap">
+	<h1><?php _e('Aweber Forms Grabber', 'aweberformsgrabber');?></h1>
+    
+    <?php if(isset($this->grabErrorMessage) && !empty($this->grabErrorMessage)){ ?>
+        <div class="notice-error"><p><?php echo $this->grabErrorMessage; ?></p></div>
+    <?php } ?>
+    
+    <?php echo $this->_includePartial('GrabberForm'); ?>
+    <?php echo $this->_includePartial('GrabberHowTo'); ?>
+    
+    <?php echo $this->_includePartial('CacheManager'); ?>
+</div>

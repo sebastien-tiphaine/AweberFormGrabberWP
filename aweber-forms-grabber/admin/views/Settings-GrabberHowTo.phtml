@@ -1,0 +1,27 @@
+<section id="grabber-explainations">
+    <!-- Grabber how to part 1-->
+        <h2><?php _e('How to Grab a new optin-form', 'aweberformsgrabber');?></h2>
+            
+        <p><?php _e('To grab a new form or update an existing one, copy and past the last part of the url that can be found in the Aweber\'s javascript and click the <strong>Grab The Form</strong> button.', 'aweberformsgrabber');?></p>
+        <p><?php _e('The Aweber javascript is the one that you have to put on your page or website in order for the form to be displayed.<br>You will mainly find it when configuring a subsriber\'s form on the Aweber web site. Note that you will need and an accound at Aweber.', 'aweberformsgrabber');?></p> 
+        <p><?php _e('The Aweber javascript may be something like that:', 'aweberformsgrabber');?><p>
+    <!-- /Grabber how to part 1-->
+        
+    <!-- Grabber how to example -->
+    <p><textarea class="aweber-form-grabber-textarea" style="width:100%; height: 210px; background-color:white;" readonly="1">
+<?php echo htmlentities('<div class="AW-Form-xxxxxx"></div>')."\n";?>
+<?php echo htmlentities('<script type="text/javascript">');?>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//forms.aweber.com/form/XX/XXXXXXXX.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, "script", "aweber-wjs-xxxxxxx"));
+<?php echo htmlentities('</script>');?></textarea></p>
+    <!-- /Grabber how to example -->
+
+    <!-- Grabber how to part 2 -->
+        <p><?php _e('To grab the form, we need the last part of the url which is indicated in the', 'aweberformsgrabber');?><code>js.src= "//forms.aweber.com/form/<span color="red">XX/XXXXXXXX.js</span>";</code></p>
+        <p><?php _e('We only need the part after <code>//forms.aweber.com/form/</code>. In the previous example, this have been replace with <code>XX/XXXXXXXX.js</code>', 'aweberformsgrabber');?></p>            <p><?php _e('Do not forget to get the <code>.js</code> with it !', 'aweberformsgrabber');?></p>
+        <!-- Grabber how to part 2 -->
+</section> 
